@@ -17,12 +17,9 @@ def index(request):
     posts = Post.objects.all()
     return render(request, 'blog/index.html', {'page_title': page_title, 'posts' : posts})
 
-def detail(request, post_id):
+def detail(request, slug):
 
-    try:
-        post = Post.objects.get(pk=post_id)
-    except Post.DoesNotExist:
-        raise Http404("This page does not exsist")
+    post = get_object_or_404(Post,slug=slug)
     # logger = logging.getLogger("Testing..")
     # logger.debug(f'post is {post}')
     return render(request, 'blog/details.html',{'post':post})

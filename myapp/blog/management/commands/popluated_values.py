@@ -5,6 +5,8 @@ class Command(BaseCommand):
     help = "This is used to populate the values"
 
     def handle(self, *args, **options):
+
+        Post.objects.all().delete()
         titles = [
             "Getting Started with Django", "The Power of the ORM", "Class-Based vs Function Views",
             "Middleware Fundamentals", "Security Best Practices", "REST Framework Integration",
