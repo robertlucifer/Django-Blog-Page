@@ -1,6 +1,6 @@
-from blog.models import Post
+from blog.models import Post, Category
 from django.core.management.base import BaseCommand
-
+import random
 class Command(BaseCommand):
     help = "This is used to populate the values"
 
@@ -63,7 +63,8 @@ class Command(BaseCommand):
             "https://picsum.photos/id/59/800/400",
             "https://picsum.photos/id/60/800/400"
         ]
-
+        categories = list(Category.objects.exclude(name="Uncategorized"))
         for title,content,image_url in zip(titles,content,image_urls):
-            Post.objects.create(title=title,content=content,image_url=image_url)
+            cata = random.choice(categories)
+            Post.objects.create(title=title,content=content,image_url=image_url,category=cata)
         self.stdout.write(self.style.SUCCESS("Completed inserting"))
