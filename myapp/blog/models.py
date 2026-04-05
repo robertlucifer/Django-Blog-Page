@@ -6,7 +6,9 @@ from django.utils.text import slugify
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
-
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Category"
     def __str__(self):
         return self.name
 
@@ -37,4 +39,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-#Category Table
+
+class AboutUs(models.Model):
+    content = models.TextField()
+    class Meta:
+        verbose_name_plural = "About Us"
+        verbose_name = "About Us"

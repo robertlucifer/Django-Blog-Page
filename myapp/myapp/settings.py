@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-mot4gu2@egc)om)(vc3n@*!puis#&p5e44dw$olk3qt68n90%-
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost',''
+    'localhost',
     '127.0.0.1'
 ]
 
@@ -86,6 +86,10 @@ DATABASES = {
         'PORT' :3306
     }
 }
+# --- Session Settings ---
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 3600
 
 
 # Password validation
