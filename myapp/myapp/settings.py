@@ -54,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'myapp.middleware.RedirectAuthenticatedUserMiddleware',
+    'myapp.middleware.RestrictUnauthenticatedUserMiddleware'
 ]
 
 ROOT_URLCONF = 'myapp.urls'
@@ -61,7 +63,7 @@ ROOT_URLCONF = 'myapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,7 +133,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'static'
+    BASE_DIR / 'blog/static/blog',
 ]
 
 LOGGING = {
@@ -147,4 +149,10 @@ LOGGING = {
         "level": "DEBUG",
     },
 }
-#asdfasdff
+DEFAULT_FROM_EMAIL = 'your_email@lucifer.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER=os.getenv('EMAIL_USER')
+EMAIL_HOST_PASSWORD=os.getenv('EMAIL_PASSWORD')
